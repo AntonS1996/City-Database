@@ -1,0 +1,23 @@
+﻿Сборка начата 15.01.2018 19:12:33.
+     1>Проект "D:\RGR2_DB\RGR2_DB\RGR2_DB.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"D:\Program Files\PostgreSQL\9.6\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>d:\rgr2_db\rgr2_db\connection.txt(28): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files\microsoft visual studio 12.0\vc\include\stdio.h(283): см. объявление "scanf"
+     1>d:\rgr2_db\rgr2_db\connection.txt(30): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files\microsoft visual studio 12.0\vc\include\stdio.h(283): см. объявление "scanf"
+       Link:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\RGR2_DB\Debug\RGR2_DB.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\Program Files\PostgreSQL\9.6\lib" libecpg.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\RGR2_DB\Debug\RGR2_DB.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\RGR2_DB\Debug\RGR2_DB.lib" /MACHINE:X86 Debug\BuildingActions.obj
+         Debug\CityActions.obj
+         Debug\connection.obj
+         Debug\DistrictActions.obj
+         Debug\LandmarkActions.obj
+         Debug\main.obj
+         Debug\StreetActions.obj
+         RGR2_DB.vcxproj -> D:\RGR2_DB\Debug\RGR2_DB.exe
+     1>Сборка проекта "D:\RGR2_DB\RGR2_DB\RGR2_DB.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:04.38

@@ -1,0 +1,142 @@
+EXEC SQL BEGIN DECLARE SECTION;
+    char LANDMARK_NAME[256];
+    char CREATION_YEAR[256];
+    char LANDMARK_TYPE[256];
+    char ARCHITECT[256];
+    char CITY_NAME_4[256];
+EXEC SQL END DECLARE SECTION;
+
+EXEC SQL WHENEVER SQLERROR SQLPRINT;
+
+int ReadLandmarkTable();
+int UpdateLandmarkTable();
+int InsertLandmarkTable();
+int DeleteLandmarkTable();
+int SelectLandmarkTable();
+
+void error1();
+void error2();
+void error3();
+
+void readStringFromConsole(char str[256]);
+
+int ReadLandmarkTable() {
+    printf("Таблица достопримечательностей \n");
+	printf("%s \t %s \t %s \t %s \t %s \n", "Название", "Год создания", "Тип", "Архитектор", "Название города");
+	printf("______________________________________________________________________________________________________________\n");
+    EXEC SQL DECLARE MyCursor CURSOR FOR
+        SELECT COALESCE(LANDMARK_NAME, ''), COALESCE(CREATION_YEAR,''), COALESCE(LANDMARK_TYPE, ''), COALESCE(ARCHITECT, ''), COALESCE(CITY_NAME_4, '') FROM LANDMARK ORDER BY CITY_NAME_4;
+	EXEC SQL OPEN MyCursor;    
+    while(1)
+    {
+    	EXEC SQL FETCH MyCursor INTO :LANDMARK_NAME, :CREATION_YEAR, :LANDMARK_TYPE, :ARCHITECT, :CITY_NAME_4;
+	if (sqlca.sqlcode == ECPG_NOT_FOUND || strncmp(sqlca.sqlstate,"00",2)) break;		
+	printf("%s \t %s \t %s \t %s \t %s \n", LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4);
+    }
+	EXEC SQL CLOSE MyCursor;
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int UpdateLandmarkTable() {
+    EXEC SQL BEGIN DECLARE SECTION;
+        char LANDMARK_NAME_key[256];
+    EXEC SQL END DECLARE SECTION;
+
+    printf("Введите название достопримечательности, информацию о которой вы хотите изменить: > ");
+    readStringFromConsole(LANDMARK_NAME_key);
+    
+    printf("Введите новое название достопримечательности > ");
+    readStringFromConsole(LANDMARK_NAME);
+	
+    printf("Введите новый год создания (при необходимости) > ");
+    readStringFromConsole(CREATION_YEAR);
+
+    printf("Введите новый тип достопримечательности > ");
+    readStringFromConsole(LANDMARK_TYPE);
+
+    printf("Введите нового архитектора > ");
+    readStringFromConsole(ARCHITECT);
+
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_4);
+
+    if(CREATION_YEAR[0] == '\0') {
+        EXEC SQL UPDATE LANDMARK SET LANDMARK_NAME = :LANDMARK_NAME, LANDMARK_TYPE = :LANDMARK_TYPE, ARCHITECT = :ARCHITECT, CITY_NAME_4 = :CITY_NAME_4 WHERE LANDMARK_NAME = :LANDMARK_NAME_key;
+    } else {
+        EXEC SQL UPDATE LANDMARK SET LANDMARK_NAME = :LANDMARK_NAME, CREATION_YEAR = :CREATION_YEAR, LANDMARK_TYPE = :LANDMARK_TYPE, ARCHITECT = :ARCHITECT, CITY_NAME_4 = :CITY_NAME_4 WHERE LANDMARK_NAME = :LANDMARK_NAME_key;
+    }
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();	
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int InsertLandmarkTable() {
+    printf("Введите название достопримечательности > ");
+    readStringFromConsole(LANDMARK_NAME);
+	
+    printf("Введите год создания > ");
+    readStringFromConsole(CREATION_YEAR);
+
+    printf("Введите тип достопримечательности > ");
+    readStringFromConsole(LANDMARK_TYPE);
+
+    printf("Введите архитектора > ");
+    readStringFromConsole(ARCHITECT);
+
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_4);
+
+        EXEC SQL INSERT INTO LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4)  VALUES(:LANDMARK_NAME, :CREATION_YEAR, :LANDMARK_TYPE, :ARCHITECT, :CITY_NAME_4);
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int DeleteLandmarkTable() {
+    EXEC SQL BEGIN DECLARE SECTION;
+        char LANDMARK_NAME_key[256];
+    EXEC SQL END DECLARE SECTION;
+
+    printf("Введите название достопримечательности, которую вы хотите удалить: > ");
+    readStringFromConsole(LANDMARK_NAME_key);
+
+	EXEC SQL DELETE FROM LANDMARK WHERE LANDMARK_NAME = :LANDMARK_NAME_key;
+
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int SelectLandmarkTable() {
+    EXEC SQL BEGIN DECLARE SECTION;
+        char LANDMARK_NAME_key[256];
+    EXEC SQL END DECLARE SECTION;
+
+    printf("Введите название достопримечательности > ");
+    readStringFromConsole(LANDMARK_NAME_key);
+
+    EXEC SQL SELECT LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4 INTO :LANDMARK_NAME, :CREATION_YEAR, :LANDMARK_TYPE, :ARCHITECT, :CITY_NAME_4 FROM LANDMARK WHERE LANDMARK_NAME = :LANDMARK_NAME_key;
+    printf(" Название достопримечательности: %s\n Год создания: %s\n Тип: %s\n Архитектор: %s\n Название города: %s\n", LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4);
+	
+    	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+    	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+    	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+

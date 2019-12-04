@@ -1,0 +1,129 @@
+EXEC SQL BEGIN DECLARE SECTION;
+    char CITY_NAME[256];
+    char REGION_CODE[256];
+    char FOUNDATION_DATE[256];
+    char CITY_POPULATION[256];
+    char REGION_CODE_key[256];
+EXEC SQL END DECLARE SECTION;
+
+EXEC SQL WHENEVER SQLERROR SQLPRINT;
+
+int ReadCityTable();
+int UpdateCityTable();
+int InsertCityTable();
+int DeleteCityTable();
+int SelectCityTable();
+
+void error1();
+void error2();
+void error3();
+
+void readStringFromConsole(char str[256]);
+
+int ReadCityTable() {
+    printf("Таблица городов \n");
+	printf("%s \t %s \t %s \t %s \n", "Название города", "Код региона", "Дата основания", "Население");
+	printf("_________________________________________________________________________________________________________\n");
+    EXEC SQL DECLARE MyCursor CURSOR FOR
+        SELECT COALESCE(CITY_NAME, ''), COALESCE(REGION_CODE,''), COALESCE(FOUNDATION_DATE, ''), COALESCE(CITY_POPULATION, '') FROM CITY ORDER BY CITY_NAME;
+	EXEC SQL OPEN MyCursor;    
+    while(1)
+    {
+	EXEC SQL FETCH MyCursor INTO :CITY_NAME, :REGION_CODE, :FOUNDATION_DATE, :CITY_POPULATION;
+	if (sqlca.sqlcode == ECPG_NOT_FOUND || strncmp(sqlca.sqlstate,"00",2)) break;		
+	printf("%s \t %s \t %s \t %s \n", CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION);
+    }
+	EXEC SQL CLOSE MyCursor;
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int UpdateCityTable() {
+    EXEC SQL BEGIN DECLARE SECTION;
+        char CITY_NAME_key[256];
+    EXEC SQL END DECLARE SECTION;
+	printf("Введите название города и новые данные для него: \n ");
+    printf("название города > ");
+    readStringFromConsole(CITY_NAME_key);
+    
+    printf("Введите новое название города > ");
+    readStringFromConsole(CITY_NAME);
+	
+    printf("Введите новый код региона > ");
+    readStringFromConsole(REGION_CODE);
+
+    printf("Введите новую дату основания (при необходимости) > ");
+    readStringFromConsole(FOUNDATION_DATE);
+
+    printf("Введите новые данные о населении > ");
+    readStringFromConsole(CITY_POPULATION);
+
+    if(FOUNDATION_DATE[0] == '\0') {
+        EXEC SQL UPDATE CITY SET CITY_NAME = :CITY_NAME, REGION_CODE = :REGION_CODE, CITY_POPULATION = :CITY_POPULATION WHERE CITY_NAME = :CITY_NAME_key;
+    } else {
+        EXEC SQL UPDATE CITY SET CITY_NAME = :CITY_NAME, REGION_CODE = :REGION_CODE, FOUNDATION_DATE = :FOUNDATION_DATE, CITY_POPULATION = :CITY_POPULATION WHERE CITY_NAME = :CITY_NAME_key;
+    }
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();	
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int InsertCityTable() {
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME);
+	
+    printf("Введите код региона > ");
+    readStringFromConsole(REGION_CODE);
+
+    printf("Введите дату основания города > ");
+    readStringFromConsole(FOUNDATION_DATE);
+
+    printf("Введите численность населения > ");
+    readStringFromConsole(CITY_POPULATION);
+
+    if(FOUNDATION_DATE[0] == '\0') {
+        EXEC SQL INSERT INTO CITY(CITY_NAME, REGION_CODE, CITY_POPULATION)  VALUES(:CITY_NAME, :REGION_CODE, :CITY_POPULATION);
+    } else {
+        EXEC SQL INSERT INTO CITY(CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION)  VALUES(:CITY_NAME, :REGION_CODE, :FOUNDATION_DATE, :CITY_POPULATION);
+    }
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int DeleteCityTable() {
+    printf("Введите название города, который вы хотите удалить: > ");
+    readStringFromConsole(CITY_NAME);
+    EXEC SQL DELETE FROM CITY WHERE CITY_NAME = :CITY_NAME;
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int SelectCityTable() {
+    printf("Введите код региона, для которого хотите получить данные города > ");
+    readStringFromConsole(REGION_CODE_key);
+
+    EXEC SQL SELECT CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION INTO :CITY_NAME, :REGION_CODE, :FOUNDATION_DATE, :CITY_POPULATION FROM CITY WHERE REGION_CODE = :REGION_CODE_key;
+    printf(" Название города: %s\n Код региона: %s\n Дата основания: %s\n Население: %s\n", CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION);
+	
+    	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+    	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+    	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}

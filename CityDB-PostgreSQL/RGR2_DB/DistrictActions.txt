@@ -1,0 +1,157 @@
+EXEC SQL BEGIN DECLARE SECTION;
+    char DISTRICT_NAME_key_1[256];
+    char CITY_NAME_key_1[256];
+    char DISTRICT_NAME[256];
+    char OKRUG[256];
+    char AREA[256];
+    char DISTRICT_POPULATION[256];
+    char CITY_NAME_1[256];
+    char OKRUG_key_1[256];
+EXEC SQL END DECLARE SECTION;
+
+EXEC SQL WHENEVER SQLERROR SQLPRINT;
+
+int ReadDistrictTable();
+int UpdateDistrictTable();
+int InsertDistrictTable();
+int DeleteDistrictTable();
+int SelectDistrictTable();
+
+void error1();
+void error2();
+void error3();
+
+void readStringFromConsole(char str[256]);
+
+int ReadDistrictTable() {
+    printf("Таблица районов \n");
+	printf("%s \t %s \t %s \t %s \t %s \n", "Название района", "Округ", "Площадь", "Население", "Название города");
+	printf("______________________________________________________________________________________________________________\n");
+    EXEC SQL DECLARE MyCursor CURSOR FOR
+        SELECT COALESCE(DISTRICT_NAME, ''), COALESCE(OKRUG,''), COALESCE(AREA, ''), COALESCE(DISTRICT_POPULATION, ''), COALESCE(CITY_NAME_1, '') FROM DISTRICT ORDER BY DISTRICT_NAME;
+	EXEC SQL OPEN MyCursor;    
+    while(1)
+    {
+    	EXEC SQL FETCH MyCursor INTO :DISTRICT_NAME, :OKRUG, :AREA, :DISTRICT_POPULATION, :CITY_NAME_1;
+	if (sqlca.sqlcode == ECPG_NOT_FOUND || strncmp(sqlca.sqlstate,"00",2)) break;		
+	printf("%s \t %s \t %s \t %s \t %s \n", DISTRICT_NAME, OKRUG, AREA, DISTRICT_POPULATION, CITY_NAME_1);
+    }
+	EXEC SQL CLOSE MyCursor;
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int UpdateDistrictTable() {
+    printf("Введите названия города и района, данные о котором вы хотите изменить: \n ");
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_key_1);
+
+    printf("Введите название района > ");
+    readStringFromConsole(DISTRICT_NAME_key_1);
+    
+    printf("Введите новое название района > ");
+    readStringFromConsole(DISTRICT_NAME);
+	
+    printf("Введите новое название округа (если он есть) > ");
+    readStringFromConsole(OKRUG);
+
+    printf("Введите новое значение площади > ");
+    readStringFromConsole(AREA);
+
+    printf("Введите новую численность населения > ");
+    readStringFromConsole(DISTRICT_POPULATION);
+    
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_1);
+
+    if(OKRUG[0] == '\0') {
+        EXEC SQL UPDATE DISTRICT SET DISTRICT_NAME = :DISTRICT_NAME, AREA = :AREA, DISTRICT_POPULATION = :DISTRICT_POPULATION, CITY_NAME_1 = :CITY_NAME_1 WHERE DISTRICT_NAME = :DISTRICT_NAME_key_1 AND CITY_NAME_1 = :CITY_NAME_key_1;
+    } else {
+        EXEC SQL UPDATE DISTRICT SET DISTRICT_NAME = :DISTRICT_NAME, OKRUG = :OKRUG, AREA = :AREA, DISTRICT_POPULATION = :DISTRICT_POPULATION, CITY_NAME_1 = :CITY_NAME_1 WHERE DISTRICT_NAME = :DISTRICT_NAME_key_1 AND CITY_NAME_1 = :CITY_NAME_key_1;
+    }
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();	
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int InsertDistrictTable() {
+    printf("Введите название района > ");
+    readStringFromConsole(DISTRICT_NAME);
+	
+    printf("Введите название округа > ");
+    readStringFromConsole(OKRUG);
+
+    printf("Введите значение площади > ");
+    readStringFromConsole(AREA);
+
+    printf("Введите численность населения > ");
+    readStringFromConsole(DISTRICT_POPULATION);
+    
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_1);
+
+    if(OKRUG[0] == '\0') {
+        EXEC SQL INSERT INTO DISTRICT(DISTRICT_NAME, AREA, DISTRICT_POPULATION, CITY_NAME_1)  VALUES(:DISTRICT_NAME, :AREA, :DISTRICT_POPULATION, :CITY_NAME_1);
+    } else {
+        EXEC SQL INSERT INTO DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRICT_POPULATION, CITY_NAME_1)  VALUES(:DISTRICT_NAME, :OKRUG, :AREA, :DISTRICT_POPULATION, :CITY_NAME_1);
+    }
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int DeleteDistrictTable() {
+    printf("Введите названия города и района, который вы хотите удалить: \n ");
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_key_1);
+
+    printf("Введите название района > ");
+    readStringFromConsole(DISTRICT_NAME_key_1);
+
+	EXEC SQL DELETE FROM DISTRICT WHERE DISTRICT_NAME = :DISTRICT_NAME_key_1 AND CITY_NAME_1 = :CITY_NAME_key_1;
+
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int SelectDistrictTable() {
+    printf("Введите название округа, в котором хотите найти районы > ");
+    readStringFromConsole(OKRUG_key_1);
+
+    printf("Таблица районов \n");
+	printf("%s \t %s \t %s \t %s \t %s \n", "Название района", "Округ", "Площадь", "Население", "Название города");
+	printf("______________________________________________________________________________________________________________\n");
+
+    EXEC SQL DECLARE MyCursor2 CURSOR FOR
+        SELECT COALESCE(DISTRICT_NAME, ''), COALESCE(OKRUG,''), COALESCE(AREA, ''), COALESCE(DISTRICT_POPULATION, ''), COALESCE(CITY_NAME_1, '') FROM DISTRICT WHERE OKRUG = :OKRUG_key_1 ORDER BY DISTRICT_NAME;
+	EXEC SQL OPEN MyCursor2;    
+    while(1)
+    {
+	EXEC SQL FETCH MyCursor2 INTO :DISTRICT_NAME, :OKRUG, :AREA, :DISTRICT_POPULATION, :CITY_NAME_1;
+	if (sqlca.sqlcode == ECPG_NOT_FOUND || strncmp(sqlca.sqlstate,"00",2)) break;		
+	printf("%s \t %s \t %s \t %s \t %s \n", DISTRICT_NAME, OKRUG, AREA, DISTRICT_POPULATION, CITY_NAME_1);
+    }
+	EXEC SQL CLOSE MyCursor2;
+	
+        EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+

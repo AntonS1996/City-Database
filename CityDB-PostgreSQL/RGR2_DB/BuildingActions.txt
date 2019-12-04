@@ -1,0 +1,195 @@
+EXEC SQL BEGIN DECLARE SECTION;
+    char NUM[256];
+    char POSTCODE[256];
+    char BUILDING_TYPE[256];
+    char CITY_NAME_3[256];
+    char DISTRICT_NAME_3[256];
+    char STREET_NAME_3[256];
+EXEC SQL END DECLARE SECTION;
+
+EXEC SQL WHENEVER SQLERROR SQLPRINT;
+
+int ReadBuildingTable();
+int UpdateBuildingTable();
+int InsertBuildingTable();
+int DeleteBuildingTable();
+int SelectBuildingTable();
+
+void error1();
+void error2();
+void error3();
+
+void readStringFromConsole(char str[256]);
+
+int ReadBuildingTable() {
+    printf("Таблица зданий \n");
+	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "Номер", "Почтовый индекс", "Тип здания", "Название города", "Название района", "Название улицы");
+	printf("______________________________________________________________________________________________________________\n");
+    EXEC SQL DECLARE MyCursor CURSOR FOR
+        SELECT COALESCE(NUM, ''), COALESCE(POSTCODE,''), COALESCE(BUILDING_TYPE, ''), COALESCE(CITY_NAME_3, ''), COALESCE(DISTRICT_NAME_3, ''), COALESCE(STREET_NAME_3, '') FROM BUILDING ORDER BY STREET_NAME_3;
+	EXEC SQL OPEN MyCursor;    
+    while(1)
+    {
+    	EXEC SQL FETCH MyCursor INTO :NUM, :POSTCODE, :BUILDING_TYPE, :CITY_NAME_3, :DISTRICT_NAME_3, :STREET_NAME_3;
+	if (sqlca.sqlcode == ECPG_NOT_FOUND || strncmp(sqlca.sqlstate,"00",2)) break;		
+	printf("%s \t %s \t %s \t %s \t %s \t %s \n", NUM, POSTCODE, BUILDING_TYPE, CITY_NAME_3, DISTRICT_NAME_3, STREET_NAME_3);
+    }
+	EXEC SQL CLOSE MyCursor;
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int UpdateBuildingTable() {
+    EXEC SQL BEGIN DECLARE SECTION;
+        char CITY_NAME_key_3[256];
+        char DISTRICT_NAME_key_3[256];
+        char STREET_NAME_key_3[256];
+        char NUM_key_3[256];
+        char POSTCODE_key_3[256];
+    EXEC SQL END DECLARE SECTION;
+
+    printf("Введите данные о здании, информацию о котором вы хотите изменить: \n ");
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_key_3);
+
+    printf("Введите название района > ");
+    readStringFromConsole(DISTRICT_NAME_key_3);
+
+    printf("Введите название улицы > ");
+    readStringFromConsole(STREET_NAME_key_3);
+
+    printf("Введите номер здания > ");
+    readStringFromConsole(NUM_key_3);
+
+    printf("Введите почтовый индекс здания > ");
+    readStringFromConsole(POSTCODE_key_3);
+    
+    printf("Введите новый номер здания > ");
+    readStringFromConsole(NUM);
+	
+    printf("Введите новый почтовый индекс > ");
+    readStringFromConsole(POSTCODE);
+
+    printf("Введите новый тип здания > ");
+    readStringFromConsole(BUILDING_TYPE);
+
+    printf("Введите новое название города > ");
+    readStringFromConsole(CITY_NAME_3);
+
+    printf("Введите новое название района > ");
+    readStringFromConsole(DISTRICT_NAME_3);
+
+    printf("Введите новое название улицы > ");
+    readStringFromConsole(STREET_NAME_3);
+
+        EXEC SQL UPDATE BUILDING SET NUM = :NUM, POSTCODE = :POSTCODE, BUILDING_TYPE = :BUILDING_TYPE, CITY_NAME_3 = :CITY_NAME_3, DISTRICT_NAME_3 = :DISTRICT_NAME_3, STREET_NAME_3 = :STREET_NAME_3 WHERE NUM = :NUM_key_3 AND POSTCODE = :POSTCODE_key_3 AND CITY_NAME_3 = :CITY_NAME_key_3 AND DISTRICT_NAME_3 = :DISTRICT_NAME_key_3 AND STREET_NAME_3 = :STREET_NAME_key_3;
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();	
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int InsertBuildingTable() {
+    printf("Введите номер здания > ");
+    readStringFromConsole(NUM);
+	
+    printf("Введите почтовый индекс > ");
+    readStringFromConsole(POSTCODE);
+
+    printf("Введите тип здания > ");
+    readStringFromConsole(BUILDING_TYPE);
+
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_3);
+
+    printf("Введите название района > ");
+    readStringFromConsole(DISTRICT_NAME_3);
+
+    printf("Введите название улицы > ");
+    readStringFromConsole(STREET_NAME_3);
+
+        EXEC SQL INSERT INTO BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME_3, DISTRICT_NAME_3, STREET_NAME_3)  VALUES(:NUM, :POSTCODE, :BUILDING_TYPE, :CITY_NAME_3, :DISTRICT_NAME_3, :STREET_NAME_3);
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int DeleteBuildingTable() {
+    EXEC SQL BEGIN DECLARE SECTION;
+        char CITY_NAME_key_3[256];
+        char DISTRICT_NAME_key_3[256];
+        char STREET_NAME_key_3[256];
+        char NUM_key_3[256];
+        char POSTCODE_key_3[256];
+    EXEC SQL END DECLARE SECTION;
+
+    printf("Введите данные о здании, которое вы хотите удалить: \n ");
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_key_3);
+
+    printf("Введите название района > ");
+    readStringFromConsole(DISTRICT_NAME_key_3);
+
+    printf("Введите название улицы > ");
+    readStringFromConsole(STREET_NAME_key_3);
+
+    printf("Введите номер здания > ");
+    readStringFromConsole(NUM_key_3);
+
+    printf("Введите почтовый индекс здания > ");
+    readStringFromConsole(POSTCODE_key_3);
+
+	EXEC SQL DELETE FROM BUILDING WHERE NUM = :NUM_key_3 AND POSTCODE = :POSTCODE_key_3 AND CITY_NAME_3 = :CITY_NAME_key_3 AND DISTRICT_NAME_3 = :DISTRICT_NAME_key_3 AND STREET_NAME_3 = :STREET_NAME_key_3;
+
+	EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
+int SelectBuildingTable() {
+    EXEC SQL BEGIN DECLARE SECTION;
+        char CITY_NAME_key_3[256];
+        char STREET_NAME_key_3[256];
+    EXEC SQL END DECLARE SECTION;
+
+    printf("Введите название города > ");
+    readStringFromConsole(CITY_NAME_key_3);
+
+    printf("Введите название улицы > ");
+    readStringFromConsole(STREET_NAME_key_3);
+
+    printf("Таблица зданий \n");
+	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "Номер", "Почтовый индекс", "Тип здания", "Название города", "Название района", "Название улицы");
+	printf("______________________________________________________________________________________________________________\n");
+
+    EXEC SQL DECLARE MyCursor2 CURSOR FOR
+        SELECT COALESCE(NUM, ''), COALESCE(POSTCODE,''), COALESCE(BUILDING_TYPE, ''), COALESCE(CITY_NAME_3, ''), COALESCE(DISTRICT_NAME_3, ''), COALESCE(STREET_NAME_3, '') FROM BUILDING WHERE CITY_NAME_3 = :CITY_NAME_key_3 AND STREET_NAME_3 = :STREET_NAME_key_3 ORDER BY STREET_NAME_3;
+	EXEC SQL OPEN MyCursor2;    
+    while(1)
+    {
+	EXEC SQL FETCH MyCursor2 INTO :NUM, :POSTCODE, :BUILDING_TYPE, :CITY_NAME_3, :DISTRICT_NAME_3, :STREET_NAME_3;
+	if (sqlca.sqlcode == ECPG_NOT_FOUND || strncmp(sqlca.sqlstate,"00",2)) break;		
+	printf("%s \t %s \t %s \t %s \t %s \t %s \n", NUM, POSTCODE, BUILDING_TYPE, CITY_NAME_3, DISTRICT_NAME_3, STREET_NAME_3);
+    }
+	EXEC SQL CLOSE MyCursor2;
+	
+        EXEC SQL WHENEVER SQLERROR CALL error1 ();
+	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
+	EXEC SQL WHENEVER NOT FOUND CALL error3 ();
+    EXEC SQL COMMIT;
+    printf("\n");
+    return 0;
+}
+
