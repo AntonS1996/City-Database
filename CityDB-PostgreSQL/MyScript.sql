@@ -7,11 +7,11 @@ CREATE TABLE CITY (
 );
 
 CREATE TABLE DISTRICT (
-    DISTRICT_NAME  	        VARCHAR,   /* Название района */
-    OKRUG    		        VARCHAR,   /* Округ */
-    AREA      		        VARCHAR,   /* Площадь */
-    DISTRCIT_POPULATION     VARCHAR,   /* Население */
-    CITY_NAME     	        VARCHAR,   /* Название города */
+    DISTRICT_NAME  	     VARCHAR,   /* Название района */
+    OKRUG    		     VARCHAR,   /* Округ */
+    AREA      		     VARCHAR,   /* Площадь */
+    DISTRCIT_POPULATION  VARCHAR,   /* Население */
+    CITY_NAME     	     VARCHAR,   /* Название города */
     CONSTRAINT "district_key" PRIMARY KEY (DISTRICT_NAME, CITY_NAME),
     
     FOREIGN KEY (CITY_NAME) REFERENCES CITY(CITY_NAME) /* Связь между городом и районом */
