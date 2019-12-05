@@ -32,12 +32,12 @@ CREATE TABLE STREET (
 );
 
 CREATE TABLE BUILDING (
-    NUM  	            VARCHAR,    /* Номер */
-    POSTCODE            VARCHAR,    /* Почтовый индекс */
-    BUILDING_TYPE       VARCHAR,    /* Тип здания */
-    CITY_NAME           VARCHAR,    /* Название города */
-    DISTRICT_NAME       VARCHAR,    /* Название района */
-    STREET_NAME         VARCHAR,    /* Название улицы */
+    NUM  	        VARCHAR,    /* Номер */
+    POSTCODE        VARCHAR,    /* Почтовый индекс */
+    BUILDING_TYPE   VARCHAR,    /* Тип здания */
+    CITY_NAME       VARCHAR,    /* Название города */
+    DISTRICT_NAME   VARCHAR,    /* Название района */
+    STREET_NAME     VARCHAR,    /* Название улицы */
     CONSTRAINT "building_key" PRIMARY KEY (NUM, POSTCODE, CITY_NAME, DISTRICT_NAME, STREET_NAME),
     
     FOREIGN KEY (CITY_NAME, DISTRICT_NAME, STREET_NAME) REFERENCES STREET(CITY_NAME, DISTRICT_NAME, STREET_NAME) /* Связь между улицей и зданием */
