@@ -1,17 +1,17 @@
 CREATE TABLE CITY (
-    CITY_NAME 		 VARCHAR,   /* Название города */
-    REGION_CODE  	 VARCHAR,   /* Код региона */
+    CITY_NAME 	     VARCHAR,   /* Название города */
+    REGION_CODE      VARCHAR,   /* Код региона */
     FOUNDATION_DATE  VARCHAR,   /* Дата основания */
     CITY_POPULATION  VARCHAR,   /* Население */
     CONSTRAINT "city_key" PRIMARY KEY (CITY_NAME)
 );
 
 CREATE TABLE DISTRICT (
-    DISTRICT_NAME  		VARCHAR,   /* Название района */
-    OKRUG    			VARCHAR,   /* Округ */
-    AREA      			VARCHAR,   /* Площадь */
+    DISTRICT_NAME  	VARCHAR,   /* Название района */
+    OKRUG    		VARCHAR,   /* Округ */
+    AREA      		VARCHAR,   /* Площадь */
     DISTRCIT_POPULATION VARCHAR,   /* Население */
-    CITY_NAME     		VARCHAR,   /* Название города */
+    CITY_NAME     	VARCHAR,   /* Название города */
     CONSTRAINT "district_key" PRIMARY KEY (DISTRICT_NAME, CITY_NAME),
     
     FOREIGN KEY (CITY_NAME) REFERENCES CITY(CITY_NAME) /* Связь между городом и районом */
@@ -20,10 +20,10 @@ CREATE TABLE DISTRICT (
 );
 
 CREATE TABLE STREET (
-    STREET_NAME  	VARCHAR,   /* Название улицы */
-    TRAFFIC    		VARCHAR,   /* Движение */
-    CITY_NAME     	VARCHAR,   /* Название города */
-	DISTRICT_NAME   VARCHAR,   /* Название района */
+    STREET_NAME     VARCHAR,   /* Название улицы */
+    TRAFFIC    	    VARCHAR,   /* Движение */
+    CITY_NAME       VARCHAR,   /* Название города */
+    DISTRICT_NAME   VARCHAR,   /* Название района */
     CONSTRAINT "street_key" PRIMARY KEY (STREET_NAME, CITY_NAME, DISTRICT_NAME),
     
     FOREIGN KEY (CITY_NAME, DISTRICT_NAME) REFERENCES DISTRICT(CITY_NAME, DISTRICT_NAME) /* Связь между районом и улицей */
@@ -32,12 +32,12 @@ CREATE TABLE STREET (
 );
 
 CREATE TABLE BUILDING (
-    NUM  			VARCHAR,                    /* Номер */
-    POSTCODE    	VARCHAR,                    /* Почтовый индекс */
+    NUM  	    VARCHAR,                    /* Номер */
+    POSTCODE        VARCHAR,                    /* Почтовый индекс */
     BUILDING_TYPE   VARCHAR,                    /* Тип здания */
-	CITY_NAME    	VARCHAR,                    /* Название города */
-	DISTRICT_NAME   VARCHAR,                    /* Название района */
-	STREET_NAME   	VARCHAR,                    /* Название улицы */
+    CITY_NAME       VARCHAR,                    /* Название города */
+    DISTRICT_NAME   VARCHAR,                    /* Название района */
+    STREET_NAME     VARCHAR,                    /* Название улицы */
     CONSTRAINT "building_key" PRIMARY KEY (NUM, POSTCODE, CITY_NAME, DISTRICT_NAME, STREET_NAME),
     
     FOREIGN KEY (CITY_NAME, DISTRICT_NAME, STREET_NAME) REFERENCES STREET(CITY_NAME, DISTRICT_NAME, STREET_NAME) /* Связь между улицей и зданием */
@@ -46,11 +46,11 @@ CREATE TABLE BUILDING (
 );
 
 CREATE TABLE LANDMARK (
-    LANDMARK_NAME  	VARCHAR,   /* Название достопримечательности */
+    LANDMARK_NAME   VARCHAR,   /* Название достопримечательности */
     CREATION_YEAR   VARCHAR,   /* Год создания */
     LANDMARK_TYPE   VARCHAR,   /* Тип */
-	ARCHITECT 		VARCHAR,   /* Архитектор */
-	CITY_NAME     	VARCHAR,   /* Название города */
+    ARCHITECT 	    VARCHAR,   /* Архитектор */
+    CITY_NAME       VARCHAR,   /* Название города */
     CONSTRAINT "landmark_key" PRIMARY KEY (LANDMARK_NAME)
 );
 
@@ -79,4 +79,3 @@ insert into LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CIT
 insert into LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Московский Кремль', '1482—1495', 'Крепость', '-', 'Москва');
 insert into LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Останкинская телебашня', '1960—1967', 'Телебашня', 'Л. И. Баталов', 'Москва');
 insert into LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Москва-Сити', '1995 — 2020', 'Деловой центр', 'Б. И. Тхор', 'Москва');
-
