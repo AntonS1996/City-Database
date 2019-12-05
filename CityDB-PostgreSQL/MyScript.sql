@@ -2,7 +2,7 @@ CREATE TABLE CITY (
     CITY_NAME 		 VARCHAR,   /* Название города */
     REGION_CODE  	 VARCHAR,   /* Код региона */
     FOUNDATION_DATE  VARCHAR,   /* Дата основания */
-	CITY_POPULATION  VARCHAR,   /* Население */
+    CITY_POPULATION  VARCHAR,   /* Население */
     CONSTRAINT "city_key" PRIMARY KEY (CITY_NAME)
 );
 
