@@ -10,8 +10,8 @@
 ecpg prog1.pgc
 cc -I/usr/include/pgsql -c ex.c
 cc -o ex ex.o -L/usr/lib64 -lecpg,,
-где -L/usr/local/pgsql/lib путь где лежит libecpg.so
--I/usr/local/pgsql/include путь где лежит ecpgtype.h, ecpglib.h, ecpgerrno.h, sqlca.h.
+РіРґРµ -L/usr/local/pgsql/lib РїСѓС‚СЊ РіРґРµ Р»РµР¶РёС‚ libecpg.so
+-I/usr/local/pgsql/include РїСѓС‚СЊ РіРґРµ Р»РµР¶РёС‚ ecpgtype.h, ecpglib.h, ecpgerrno.h, sqlca.h.
 */
 
 #include <stdio.h>
@@ -91,13 +91,13 @@ struct sqlca_t *ECPGget_sqlca(void);
 //#pragma comment(lib, "libecpg.lib")
          /*
                 EXEC SQL BEGIN DECLARE SECTION;
-                EXEC SQL END DECLARE SECTION; - пара инструкций для обьявления переменных,
-                которые будут взаимодействовать с данными на сервере.
-                Внутри этих инструкций используется обычный С-синтаксис обьявления и
-                            инициализации переменных
+                EXEC SQL END DECLARE SECTION; - РїР°СЂР° РёРЅСЃС‚СЂСѓРєС†РёР№ РґР»СЏ РѕР±СЊСЏРІР»РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С…,
+                РєРѕС‚РѕСЂС‹Рµ Р±СѓРґСѓС‚ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРѕРІР°С‚СЊ СЃ РґР°РЅРЅС‹РјРё РЅР° СЃРµСЂРІРµСЂРµ.
+                Р’РЅСѓС‚СЂРё СЌС‚РёС… РёРЅСЃС‚СЂСѓРєС†РёР№ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РѕР±С‹С‡РЅС‹Р№ РЎ-СЃРёРЅС‚Р°РєСЃРёСЃ РѕР±СЊСЏРІР»РµРЅРёСЏ Рё
+                            РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РїРµСЂРµРјРµРЅРЅС‹С…
             */
 
-        //для соединения с БД
+        //РґР»СЏ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ Р‘Р”
         /* exec sql begin declare section */ 
             
             
@@ -115,7 +115,7 @@ struct sqlca_t *ECPGget_sqlca(void);
 #line 27 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
 
 
-        //для взаимодействия с БД
+        //РґР»СЏ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ СЃ Р‘Р”
         /* exec sql begin declare section */
                  
                  
@@ -142,7 +142,7 @@ struct sqlca_t *ECPGget_sqlca(void);
 	
 
         /*
-                Инструкция, позволяющая обрабатывать ошибки.
+                РРЅСЃС‚СЂСѓРєС†РёСЏ, РїРѕР·РІРѕР»СЏСЋС‰Р°СЏ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РѕС€РёР±РєРё.
         */
         //void f_error(void);
         //EXEC SQL WHENEVER SQLERROR CALL f_error;	
@@ -150,23 +150,23 @@ struct sqlca_t *ECPGget_sqlca(void);
 #line 43 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
 			
         /*
-            Общий синтаксис: 
+            РћР±С‰РёР№ СЃРёРЅС‚Р°РєСЃРёСЃ: 
             EXEC SQL WHENEVER condition action;
-                condition - тип ошибок, который будет отлавливаться.
-                action - действие, которое будет инициироваться при возникновении ошибки
-                Возможные значения condition:
-                                 SQLERROR - ошибки при выполении инструкции
-                                 SQLWARNING -  предупреждения при выполении инструкции
-                                 NOT FOUND - попытка извлечь пустую строку
-              Возможные значения action:   
-                                 CONTINUE - продолжение работы приложения	
-                                 GOTO label - переход на метку
-                                 SQLPRINT - печать ошибок в стандартный поток ошибок
-                                 STOP - эквивалент exit(1) в С
-                                 DO BREAK - эквивалент break в С. Используется только в switch
-                                            или в цикле.
-                                 CALL name (args) - вызов функции name с аргументами args 
-                                 DO name (args)   - вызов функции name с аргументами args 
+                condition - С‚РёРї РѕС€РёР±РѕРє, РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РѕС‚Р»Р°РІР»РёРІР°С‚СЊСЃСЏ.
+                action - РґРµР№СЃС‚РІРёРµ, РєРѕС‚РѕСЂРѕРµ Р±СѓРґРµС‚ РёРЅРёС†РёРёСЂРѕРІР°С‚СЊСЃСЏ РїСЂРё РІРѕР·РЅРёРєРЅРѕРІРµРЅРёРё РѕС€РёР±РєРё
+                Р’РѕР·РјРѕР¶РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ condition:
+                                 SQLERROR - РѕС€РёР±РєРё РїСЂРё РІС‹РїРѕР»РµРЅРёРё РёРЅСЃС‚СЂСѓРєС†РёРё
+                                 SQLWARNING -  РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ РїСЂРё РІС‹РїРѕР»РµРЅРёРё РёРЅСЃС‚СЂСѓРєС†РёРё
+                                 NOT FOUND - РїРѕРїС‹С‚РєР° РёР·РІР»РµС‡СЊ РїСѓСЃС‚СѓСЋ СЃС‚СЂРѕРєСѓ
+              Р’РѕР·РјРѕР¶РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ action:   
+                                 CONTINUE - РїСЂРѕРґРѕР»Р¶РµРЅРёРµ СЂР°Р±РѕС‚С‹ РїСЂРёР»РѕР¶РµРЅРёСЏ	
+                                 GOTO label - РїРµСЂРµС…РѕРґ РЅР° РјРµС‚РєСѓ
+                                 SQLPRINT - РїРµС‡Р°С‚СЊ РѕС€РёР±РѕРє РІ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РїРѕС‚РѕРє РѕС€РёР±РѕРє
+                                 STOP - СЌРєРІРёРІР°Р»РµРЅС‚ exit(1) РІ РЎ
+                                 DO BREAK - СЌРєРІРёРІР°Р»РµРЅС‚ break РІ РЎ. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РІ switch
+                                            РёР»Рё РІ С†РёРєР»Рµ.
+                                 CALL name (args) - РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё name СЃ Р°СЂРіСѓРјРµРЅС‚Р°РјРё args 
+                                 DO name (args)   - РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё name СЃ Р°СЂРіСѓРјРµРЅС‚Р°РјРё args 
 
         */
 int menu();
@@ -189,9 +189,9 @@ if (sqlca.sqlcode < 0) sqlprint();}
 
 
                 /*
-                   Переменная sqlca - структура. Поле sqlcode - можно использовать для 
-                   индикации ошибок. 
-                   sqlstate - переменная из 5 символов. Если первые два 00, то всё нормально
+                   РџРµСЂРµРјРµРЅРЅР°СЏ sqlca - СЃС‚СЂСѓРєС‚СѓСЂР°. РџРѕР»Рµ sqlcode - РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР»СЏ 
+                   РёРЅРґРёРєР°С†РёРё РѕС€РёР±РѕРє. 
+                   sqlstate - РїРµСЂРµРјРµРЅРЅР°СЏ РёР· 5 СЃРёРјРІРѕР»РѕРІ. Р•СЃР»Рё РїРµСЂРІС‹Рµ РґРІР° 00, С‚Рѕ РІСЃС‘ РЅРѕСЂРјР°Р»СЊРЅРѕ
                 */
 
         if( sqlca.sqlcode != 0 || strncmp(sqlca.sqlstate,"00",2))
@@ -502,7 +502,7 @@ if (sqlca.sqlcode < 0) sqlprint();}
 int InsertValues()
 {		
         /*
-                Получения id
+                РџРѕР»СѓС‡РµРЅРёСЏ id
         */
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "select count ( * ) from exTab", ECPGt_EOIT, 
 	ECPGt_int,&(my_count),(long)1,(long)1,sizeof(int), 
@@ -534,7 +534,7 @@ if (sqlca.sqlcode < 0) sqlprint();}
         scanf("%c", my_data);
          
          my_data[0]='\0';
-        scanf("%[ a-zA-Z0-9+,а-яА-Я/-.]",my_data);
+        scanf("%[ a-zA-Z0-9+,Р°-СЏРђ-РЇ/-.]",my_data);
         
 
        printf("enter new 'date1' >");
@@ -542,15 +542,15 @@ if (sqlca.sqlcode < 0) sqlprint();}
        scanf("%c", date1);
       
             date1[0]='\0';
-        scanf("%[ a-zA-Z0-9+,а-яА-Я/-.]",date1);
+        scanf("%[ a-zA-Z0-9+,Р°-СЏРђ-РЇ/-.]",date1);
 
  printf("enter new 'date2' >");
         scanf("%c", date2);
         
             date2[0]='\0';
-        scanf("%[ a-zA-Z0-9+,а-яА-Я/-.]",date2);
+        scanf("%[ a-zA-Z0-9+,Р°-СЏРђ-РЇ/-.]",date2);
         /*
-                Вставка данных в таблицу из переменных my_id, my_data
+                Р’СЃС‚Р°РІРєР° РґР°РЅРЅС‹С… РІ С‚Р°Р±Р»РёС†Сѓ РёР· РїРµСЂРµРјРµРЅРЅС‹С… my_id, my_data
         */
         
         
@@ -571,15 +571,15 @@ if (sqlca.sqlcode < 0) sqlprint();}
 
 
         /*
-                Инструкция применения транзакции
-                Если ошибок нет при выполении, то данные сохраняются в базе.
-                Если произошла ошибка, то данные не сохраняются.
-                !Так как по-умолчанию данные не сохраняются, то здесь
-                нет необходимости явно писать инструкцию - EXEC SQL ROLLBACK,
-                означающую откат транзакци
+                РРЅСЃС‚СЂСѓРєС†РёСЏ РїСЂРёРјРµРЅРµРЅРёСЏ С‚СЂР°РЅР·Р°РєС†РёРё
+                Р•СЃР»Рё РѕС€РёР±РѕРє РЅРµС‚ РїСЂРё РІС‹РїРѕР»РµРЅРёРё, С‚Рѕ РґР°РЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏСЋС‚СЃСЏ РІ Р±Р°Р·Рµ.
+                Р•СЃР»Рё РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°, С‚Рѕ РґР°РЅРЅС‹Рµ РЅРµ СЃРѕС…СЂР°РЅСЏСЋС‚СЃСЏ.
+                !РўР°Рє РєР°Рє РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ РґР°РЅРЅС‹Рµ РЅРµ СЃРѕС…СЂР°РЅСЏСЋС‚СЃСЏ, С‚Рѕ Р·РґРµСЃСЊ
+                РЅРµС‚ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё СЏРІРЅРѕ РїРёСЃР°С‚СЊ РёРЅСЃС‚СЂСѓРєС†РёСЋ - EXEC SQL ROLLBACK,
+                РѕР·РЅР°С‡Р°СЋС‰СѓСЋ РѕС‚РєР°С‚ С‚СЂР°РЅР·Р°РєС†Рё
         */
         /*
-                Применить транзакцию, т.е сохранить данные в базе.
+                РџСЂРёРјРµРЅРёС‚СЊ С‚СЂР°РЅР·Р°РєС†РёСЋ, С‚.Рµ СЃРѕС…СЂР°РЅРёС‚СЊ РґР°РЅРЅС‹Рµ РІ Р±Р°Р·Рµ.
         */
         { ECPGtrans(__LINE__, NULL, "commit");
 #line 331 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
@@ -594,15 +594,15 @@ if (sqlca.sqlcode < 0) sqlprint();}
 int ReadAllRecord()
 {
         /*
-                Обьявление курсора.
-                Общий синтаксис: EXEC SQL DECLARE <cursor_name> CURSOR FOR <sql_statement>;
+                РћР±СЊСЏРІР»РµРЅРёРµ РєСѓСЂСЃРѕСЂР°.
+                РћР±С‰РёР№ СЃРёРЅС‚Р°РєСЃРёСЃ: EXEC SQL DECLARE <cursor_name> CURSOR FOR <sql_statement>;
         */
         /* declare MyCursor cursor for select id , coalesce ( name , '' ) , coalesce ( cast ( date1 as varchar ) , '' ) , coalesce ( cast ( date2 as varchar ) , '' ) from exTab order by id */
 #line 343 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
 
         /*
-            Открытие курсора.
-            Общий синтаксис: EXEC SQL OPEN <cursor_name>;
+            РћС‚РєСЂС‹С‚РёРµ РєСѓСЂСЃРѕСЂР°.
+            РћР±С‰РёР№ СЃРёРЅС‚Р°РєСЃРёСЃ: EXEC SQL OPEN <cursor_name>;
         */
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "declare MyCursor cursor for select id , coalesce ( name , '' ) , coalesce ( cast ( date1 as varchar ) , '' ) , coalesce ( cast ( date2 as varchar ) , '' ) from exTab order by id", ECPGt_EOIT, ECPGt_EORT);
 #line 348 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
@@ -613,9 +613,9 @@ if (sqlca.sqlcode < 0) sqlprint();}
         while(1)
         {
             /*
-                        Чтение из курсора.
-                        Общий синтаксис: EXEC SQL FETCH <cursor_name> INTO <var_list>;,
-                                   где <var_list> - список переменных	
+                        Р§С‚РµРЅРёРµ РёР· РєСѓСЂСЃРѕСЂР°.
+                        РћР±С‰РёР№ СЃРёРЅС‚Р°РєСЃРёСЃ: EXEC SQL FETCH <cursor_name> INTO <var_list>;,
+                                   РіРґРµ <var_list> - СЃРїРёСЃРѕРє РїРµСЂРµРјРµРЅРЅС‹С…	
             */
                 { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "fetch MyCursor", ECPGt_EOIT, 
 	ECPGt_int,&(my_id),(long)1,(long)1,sizeof(int), 
@@ -632,14 +632,14 @@ if (sqlca.sqlcode < 0) sqlprint();}
 #line 356 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
 
 
-                /*'ECPG_NOT_FOUND' - попытка прочитать пустую
-               строку. */
+                /*'ECPG_NOT_FOUND' - РїРѕРїС‹С‚РєР° РїСЂРѕС‡РёС‚Р°С‚СЊ РїСѓСЃС‚СѓСЋ
+               СЃС‚СЂРѕРєСѓ. */
                 if (sqlca.sqlcode == ECPG_NOT_FOUND || strncmp(sqlca.sqlstate,"00",2)) break;		
                 printf("\t %d \t %s \t %s \t %s\n", my_id, my_data, date1, date2);
         }
         /*
-                Закрытие курсора.
-                Общий синтаксис: EXEC SQL CLOSE <cursor_name>;
+                Р—Р°РєСЂС‹С‚РёРµ РєСѓСЂСЃРѕСЂР°.
+                РћР±С‰РёР№ СЃРёРЅС‚Р°РєСЃРёСЃ: EXEC SQL CLOSE <cursor_name>;
         */
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "close MyCursor", ECPGt_EOIT, ECPGt_EORT);
 #line 367 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
@@ -661,7 +661,7 @@ int SelectValues()
         printf("select 'id' >");
         scanf("%d", &my_id);
         /*
-                Извленеие данных из таблицы в переменные my_id, my_data
+                РР·РІР»РµРЅРµРёРµ РґР°РЅРЅС‹С… РёР· С‚Р°Р±Р»РёС†С‹ РІ РїРµСЂРµРјРµРЅРЅС‹Рµ my_id, my_data
         */
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "select id , name from exTab where id = $1 ", 
 	ECPGt_int,&(my_id),(long)1,(long)1,sizeof(int), 
@@ -686,7 +686,7 @@ int UpdateValues()
         scanf("%s", my_data);
 
         /*
-                Обновление данных data в таблице 
+                РћР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С… data РІ С‚Р°Р±Р»РёС†Рµ 
         */
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "update exTab set name = $1  where id = $2 ", 
 	ECPGt_char,(my_data),(long)256,(long)1,(256)*sizeof(char), 
@@ -713,7 +713,7 @@ int DeleteValues()
         scanf("%d", &my_id);
 
         /*
-                Удаление данных из таблицы
+                РЈРґР°Р»РµРЅРёРµ РґР°РЅРЅС‹С… РёР· С‚Р°Р±Р»РёС†С‹
         */
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "delete from exTab where id = $1 ", 
 	ECPGt_int,&(my_id),(long)1,(long)1,sizeof(int), 
@@ -724,7 +724,7 @@ if (sqlca.sqlcode < 0) sqlprint();}
 #line 406 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
 
         /*
-                Применить транзакцию, т.е удалить данные из базы
+                РџСЂРёРјРµРЅРёС‚СЊ С‚СЂР°РЅР·Р°РєС†РёСЋ, С‚.Рµ СѓРґР°Р»РёС‚СЊ РґР°РЅРЅС‹Рµ РёР· Р±Р°Р·С‹
         */
         { ECPGtrans(__LINE__, NULL, "commit");
 #line 410 "D:\\RGR2_DB\\RGR2_DB\\ex.txt"
