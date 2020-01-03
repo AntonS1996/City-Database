@@ -56,26 +56,26 @@ CREATE TABLE LANDMARK (
 
 
 
-insert into CITY(CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION) VALUES('Москва', '77', '1147', '12 380 664');
+INSERT INTO CITY(CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION) VALUES('Москва', '77', '1147', '12 380 664');
 
-insert into DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Измайлово', 'Восточный', '15,24', '106 154', 'Москва');
-insert into DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Якиманка', 'Центральный', '4,80', '27 463', 'Москва');
-insert into DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Замоскворечье', 'Центральный', '4,32', '57 871', 'Москва');
-insert into DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Пресненский', 'Центральный', '11,70', '126 178', 'Москва');
-insert into DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Северное Измайлово', 'Восточный', '4,20', '87 247', 'Москва');
+INSERT INTO DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Измайлово', 'Восточный', '15,24', '106 154', 'Москва');
+INSERT INTO DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Якиманка', 'Центральный', '4,80', '27 463', 'Москва');
+INSERT INTO DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Замоскворечье', 'Центральный', '4,32', '57 871', 'Москва');
+INSERT INTO DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Пресненский', 'Центральный', '11,70', '126 178', 'Москва');
+INSERT INTO DISTRICT(DISTRICT_NAME, OKRUG, AREA, DISTRCIT_POPULATION, CITY_NAME) VALUES('Северное Измайлово', 'Восточный', '4,20', '87 247', 'Москва');
 
-insert into STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Первомайская ул.', 'Двустороннее', 'Москва', 'Измайлово');
-insert into STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Измайловский бульвар', 'Двустороннее', 'Москва', 'Измайлово');
-insert into STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Щёлковское шоссе', 'Двустороннее', 'Москва', 'Северное Измайлово');
-insert into STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Пресненская набережная', 'Двустороннее', 'Москва', 'Пресненский');
-insert into STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Мытная ул.', 'Двустороннее', 'Москва', 'Якиманка');
+INSERT INTO STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Первомайская ул.', 'Двустороннее', 'Москва', 'Измайлово');
+INSERT INTO STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Измайловский бульвар', 'Двустороннее', 'Москва', 'Измайлово');
+INSERT INTO STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Щёлковское шоссе', 'Двустороннее', 'Москва', 'Северное Измайлово');
+INSERT INTO STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Пресненская набережная', 'Двустороннее', 'Москва', 'Пресненский');
+INSERT INTO STREET(STREET_NAME, TRAFFIC, CITY_NAME, DISTRICT_NAME) VALUES('Мытная ул.', 'Двустороннее', 'Москва', 'Якиманка');
 
-insert into BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME, DISTRICT_NAME, STREET_NAME) VALUES('39', '105043', 'Жилое', 'Москва', 'Измайлово', 'Первомайская');
-insert into BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME, DISTRICT_NAME, STREET_NAME) VALUES('11/31', '105264', 'Жилое', 'Москва', 'Измайлово', 'Измайловский бульвар');
-insert into BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME, DISTRICT_NAME, STREET_NAME) VALUES('12', '123100', 'Офисное', 'Москва', 'Пресненский', 'Пресненская набережная');
-insert into BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME, DISTRICT_NAME, STREET_NAME) VALUES('40', '115162', 'Офисное', 'Москва', 'Якиманка', 'Мытная ул.');
+INSERT INTO BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME, DISTRICT_NAME, STREET_NAME) VALUES('39', '105043', 'Жилое', 'Москва', 'Измайлово', 'Первомайская');
+INSERT INTO BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME, DISTRICT_NAME, STREET_NAME) VALUES('11/31', '105264', 'Жилое', 'Москва', 'Измайлово', 'Измайловский бульвар');
+INSERT INTO BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME, DISTRICT_NAME, STREET_NAME) VALUES('12', '123100', 'Офисное', 'Москва', 'Пресненский', 'Пресненская набережная');
+INSERT INTO BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME, DISTRICT_NAME, STREET_NAME) VALUES('40', '115162', 'Офисное', 'Москва', 'Якиманка', 'Мытная ул.');
 
-insert into LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Храм Христа Спасителя', '1812', 'Собор', 'К. А. Тон', 'Москва');
-insert into LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Московский Кремль', '1482—1495', 'Крепость', '-', 'Москва');
-insert into LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Останкинская телебашня', '1960—1967', 'Телебашня', 'Л. И. Баталов', 'Москва');
-insert into LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Москва-Сити', '1995 — 2020', 'Деловой центр', 'Б. И. Тхор', 'Москва');
+INSERT INTO LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Храм Христа Спасителя', '1812', 'Собор', 'К. А. Тон', 'Москва');
+INSERT INTO LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Московский Кремль', '1482—1495', 'Крепость', '-', 'Москва');
+INSERT INTO LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Останкинская телебашня', '1960—1967', 'Телебашня', 'Л. И. Баталов', 'Москва');
+INSERT INTO LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME) VALUES('Москва-Сити', '1995 — 2020', 'Деловой центр', 'Б. И. Тхор', 'Москва');
