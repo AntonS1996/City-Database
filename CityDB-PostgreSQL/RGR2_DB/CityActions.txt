@@ -21,8 +21,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadCityTable() {
-    printf("Таблица городов \n");
-	printf("%s \t %s \t %s \t %s \n", "Название города", "Код региона", "Дата основания", "Население");
+    printf("РўР°Р±Р»РёС†Р° РіРѕСЂРѕРґРѕРІ \n");
+	printf("%s \t %s \t %s \t %s \n", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РљРѕРґ СЂРµРіРёРѕРЅР°", "Р”Р°С‚Р° РѕСЃРЅРѕРІР°РЅРёСЏ", "РќР°СЃРµР»РµРЅРёРµ");
 	printf("_________________________________________________________________________________________________________\n");
     EXEC SQL DECLARE MyCursor CURSOR FOR
         SELECT COALESCE(CITY_NAME, ''), COALESCE(REGION_CODE,''), COALESCE(FOUNDATION_DATE, ''), COALESCE(CITY_POPULATION, '') FROM CITY ORDER BY CITY_NAME;
@@ -46,20 +46,20 @@ int UpdateCityTable() {
     EXEC SQL BEGIN DECLARE SECTION;
         char CITY_NAME_key[256];
     EXEC SQL END DECLARE SECTION;
-	printf("Введите название города и новые данные для него: \n ");
-    printf("название города > ");
+	printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° Рё РЅРѕРІС‹Рµ РґР°РЅРЅС‹Рµ РґР»СЏ РЅРµРіРѕ: \n ");
+    printf("РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key);
     
-    printf("Введите новое название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME);
 	
-    printf("Введите новый код региона > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РєРѕРґ СЂРµРіРёРѕРЅР° > ");
     readStringFromConsole(REGION_CODE);
 
-    printf("Введите новую дату основания (при необходимости) > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ РґР°С‚Сѓ РѕСЃРЅРѕРІР°РЅРёСЏ (РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё) > ");
     readStringFromConsole(FOUNDATION_DATE);
 
-    printf("Введите новые данные о населении > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РґР°РЅРЅС‹Рµ Рѕ РЅР°СЃРµР»РµРЅРёРё > ");
     readStringFromConsole(CITY_POPULATION);
 
     if(FOUNDATION_DATE[0] == '\0') {
@@ -76,16 +76,16 @@ int UpdateCityTable() {
 }
 
 int InsertCityTable() {
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME);
 	
-    printf("Введите код региона > ");
+    printf("Р’РІРµРґРёС‚Рµ РєРѕРґ СЂРµРіРёРѕРЅР° > ");
     readStringFromConsole(REGION_CODE);
 
-    printf("Введите дату основания города > ");
+    printf("Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РѕСЃРЅРѕРІР°РЅРёСЏ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(FOUNDATION_DATE);
 
-    printf("Введите численность населения > ");
+    printf("Р’РІРµРґРёС‚Рµ С‡РёСЃР»РµРЅРЅРѕСЃС‚СЊ РЅР°СЃРµР»РµРЅРёСЏ > ");
     readStringFromConsole(CITY_POPULATION);
 
     if(FOUNDATION_DATE[0] == '\0') {
@@ -102,7 +102,7 @@ int InsertCityTable() {
 }
 
 int DeleteCityTable() {
-    printf("Введите название города, который вы хотите удалить: > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°, РєРѕС‚РѕСЂС‹Р№ РІС‹ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ: > ");
     readStringFromConsole(CITY_NAME);
     EXEC SQL DELETE FROM CITY WHERE CITY_NAME = :CITY_NAME;
 	EXEC SQL WHENEVER SQLERROR CALL error1 ();
@@ -114,11 +114,11 @@ int DeleteCityTable() {
 }
 
 int SelectCityTable() {
-    printf("Введите код региона, для которого хотите получить данные города > ");
+    printf("Р’РІРµРґРёС‚Рµ РєРѕРґ СЂРµРіРёРѕРЅР°, РґР»СЏ РєРѕС‚РѕСЂРѕРіРѕ С…РѕС‚РёС‚Рµ РїРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅС‹Рµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(REGION_CODE_key);
 
     EXEC SQL SELECT CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION INTO :CITY_NAME, :REGION_CODE, :FOUNDATION_DATE, :CITY_POPULATION FROM CITY WHERE REGION_CODE = :REGION_CODE_key;
-    printf(" Название города: %s\n Код региона: %s\n Дата основания: %s\n Население: %s\n", CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION);
+    printf(" РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°: %s\n РљРѕРґ СЂРµРіРёРѕРЅР°: %s\n Р”Р°С‚Р° РѕСЃРЅРѕРІР°РЅРёСЏ: %s\n РќР°СЃРµР»РµРЅРёРµ: %s\n", CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION);
 	
     	EXEC SQL WHENEVER SQLERROR CALL error1 ();
     	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
