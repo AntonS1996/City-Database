@@ -48,8 +48,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadCityTable() {
-    printf("Òàáëèöà ãîðîäîâ \n");
-	printf("%s \t %s \t %s \t %s \n", "Íàçâàíèå ãîðîäà", "Êîä ðåãèîíà", "Äàòà îñíîâàíèÿ", "Íàñåëåíèå");
+    printf("Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð° Ð³Ð¾Ñ€Ð¾Ð´Ð¾Ð² \n");
+	printf("%s \t %s \t %s \t %s \n", "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð°", "ÐšÐ¾Ð´ Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð°", "Ð”Ð°Ñ‚Ð° Ð¾ÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ", "ÐÐ°ÑÐµÐ»ÐµÐ½Ð¸Ðµ");
 	printf("_________________________________________________________________________________________________________\n");
     /* declare MyCursor cursor for select coalesce ( CITY_NAME , '' ) , coalesce ( REGION_CODE , '' ) , coalesce ( FOUNDATION_DATE , '' ) , coalesce ( CITY_POPULATION , '' ) from CITY order by CITY_NAME */
 #line 28 "D:\\RGR2_DB\\RGR2_DB\\CityActions.txt"
@@ -116,20 +116,20 @@ int UpdateCityTable() {
 /* exec sql end declare section */
 #line 48 "D:\\RGR2_DB\\RGR2_DB\\CityActions.txt"
 
-	printf("Ââåäèòå íàçâàíèå ãîðîäà è íîâûå äàííûå äëÿ íåãî: \n ");
-    printf("íàçâàíèå ãîðîäà > ");
+	printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð° Ð¸ Ð½Ð¾Ð²Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð½ÐµÐ³Ð¾: \n ");
+    printf("Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð° > ");
     readStringFromConsole(CITY_NAME_key);
     
-    printf("Ââåäèòå íîâîå íàçâàíèå ãîðîäà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ð¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð° > ");
     readStringFromConsole(CITY_NAME);
 	
-    printf("Ââåäèòå íîâûé êîä ðåãèîíà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ð¹ ÐºÐ¾Ð´ Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð° > ");
     readStringFromConsole(REGION_CODE);
 
-    printf("Ââåäèòå íîâóþ äàòó îñíîâàíèÿ (ïðè íåîáõîäèìîñòè) > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²ÑƒÑŽ Ð´Ð°Ñ‚Ñƒ Ð¾ÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ (Ð¿Ñ€Ð¸ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ÑÑ‚Ð¸) > ");
     readStringFromConsole(FOUNDATION_DATE);
 
-    printf("Ââåäèòå íîâûå äàííûå î íàñåëåíèè > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¾ Ð½Ð°ÑÐµÐ»ÐµÐ½Ð¸Ð¸ > ");
     readStringFromConsole(CITY_POPULATION);
 
     if(FOUNDATION_DATE[0] == '\0') {
@@ -200,16 +200,16 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int InsertCityTable() {
-    printf("Ââåäèòå íàçâàíèå ãîðîäà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð° > ");
     readStringFromConsole(CITY_NAME);
 	
-    printf("Ââåäèòå êîä ðåãèîíà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð´ Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð° > ");
     readStringFromConsole(REGION_CODE);
 
-    printf("Ââåäèòå äàòó îñíîâàíèÿ ãîðîäà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ Ð¾ÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ Ð³Ð¾Ñ€Ð¾Ð´Ð° > ");
     readStringFromConsole(FOUNDATION_DATE);
 
-    printf("Ââåäèòå ÷èñëåííîñòü íàñåëåíèÿ > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»ÐµÐ½Ð½Ð¾ÑÑ‚ÑŒ Ð½Ð°ÑÐµÐ»ÐµÐ½Ð¸Ñ > ");
     readStringFromConsole(CITY_POPULATION);
 
     if(FOUNDATION_DATE[0] == '\0') {
@@ -276,7 +276,7 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int DeleteCityTable() {
-    printf("Ââåäèòå íàçâàíèå ãîðîäà, êîòîðûé âû õîòèòå óäàëèòü: > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð°, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ: > ");
     readStringFromConsole(CITY_NAME);
     { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "delete from CITY where CITY_NAME = $1 ", 
 	ECPGt_char,(CITY_NAME),(long)256,(long)1,(256)*sizeof(char), 
@@ -315,7 +315,7 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int SelectCityTable() {
-    printf("Ââåäèòå êîä ðåãèîíà, äëÿ êîòîðîãî õîòèòå ïîëó÷èòü äàííûå ãîðîäà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð´ Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð°, Ð´Ð»Ñ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð° > ");
     readStringFromConsole(REGION_CODE_key);
 
     { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "select CITY_NAME , REGION_CODE , FOUNDATION_DATE , CITY_POPULATION from CITY where REGION_CODE = $1 ", 
@@ -340,7 +340,7 @@ if (sqlca.sqlwarn[0] == 'W') error2 ( );
 if (sqlca.sqlcode < 0) error1 ( );}
 #line 120 "D:\\RGR2_DB\\RGR2_DB\\CityActions.txt"
 
-    printf(" Íàçâàíèå ãîðîäà: %s\n Êîä ðåãèîíà: %s\n Äàòà îñíîâàíèÿ: %s\n Íàñåëåíèå: %s\n", CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION);
+    printf(" ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð°: %s\n ÐšÐ¾Ð´ Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð°: %s\n Ð”Ð°Ñ‚Ð° Ð¾ÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ: %s\n ÐÐ°ÑÐµÐ»ÐµÐ½Ð¸Ðµ: %s\n", CITY_NAME, REGION_CODE, FOUNDATION_DATE, CITY_POPULATION);
 	
     	/* exec sql whenever sqlerror  call error1 ( ) ; */
 #line 123 "D:\\RGR2_DB\\RGR2_DB\\CityActions.txt"
