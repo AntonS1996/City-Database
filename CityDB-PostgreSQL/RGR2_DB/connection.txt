@@ -11,7 +11,7 @@ int connectToDB() {
     if( sqlca.sqlcode != 0 || strncmp(sqlca.sqlstate,"00",2))
         {
             return -1;
-            // printf("Проблемы с подключением с базой данных \n");
+            // printf("Проблемы с подключением к базе данных \n");
             // exit(-1);
         }
     return 0;
