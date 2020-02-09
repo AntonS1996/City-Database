@@ -52,8 +52,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadBuildingTable() {
-    printf("Таблица зданий \n");
-	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "Номер", "Почтовый индекс", "Тип здания", "Название города", "Название района", "Название улицы");
+    printf("РўР°Р±Р»РёС†Р° Р·РґР°РЅРёР№ \n");
+	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "РќРѕРјРµСЂ", "РџРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ", "РўРёРї Р·РґР°РЅРёСЏ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°", "РќР°Р·РІР°РЅРёРµ СѓР»РёС†С‹");
 	printf("______________________________________________________________________________________________________________\n");
     /* declare MyCursor cursor for select coalesce ( NUM , '' ) , coalesce ( POSTCODE , '' ) , coalesce ( BUILDING_TYPE , '' ) , coalesce ( CITY_NAME_3 , '' ) , coalesce ( DISTRICT_NAME_3 , '' ) , coalesce ( STREET_NAME_3 , '' ) from BUILDING order by STREET_NAME_3 */
 #line 29 "D:\\RGR2_DB\\RGR2_DB\\BuildingActions.txt"
@@ -141,38 +141,38 @@ int UpdateBuildingTable() {
 #line 53 "D:\\RGR2_DB\\RGR2_DB\\BuildingActions.txt"
 
 
-    printf("Введите данные о здании, информацию о котором вы хотите изменить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ Рѕ Р·РґР°РЅРёРё, РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РєРѕС‚РѕСЂРѕРј РІС‹ С…РѕС‚РёС‚Рµ РёР·РјРµРЅРёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_3);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_3);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_3);
 
-    printf("Введите номер здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(NUM_key_3);
 
-    printf("Введите почтовый индекс здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РїРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(POSTCODE_key_3);
     
-    printf("Введите новый номер здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РЅРѕРјРµСЂ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(NUM);
 	
-    printf("Введите новый почтовый индекс > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РїРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ > ");
     readStringFromConsole(POSTCODE);
 
-    printf("Введите новый тип здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ С‚РёРї Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(BUILDING_TYPE);
 
-    printf("Введите новое название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_3);
 
-    printf("Введите новое название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_3);
 
-    printf("Введите новое название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_3);
 
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "update BUILDING set NUM = $1  , POSTCODE = $2  , BUILDING_TYPE = $3  , CITY_NAME_3 = $4  , DISTRICT_NAME_3 = $5  , STREET_NAME_3 = $6  where NUM = $7  and POSTCODE = $8  and CITY_NAME_3 = $9  and DISTRICT_NAME_3 = $10  and STREET_NAME_3 = $11 ", 
@@ -232,22 +232,22 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int InsertBuildingTable() {
-    printf("Введите номер здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(NUM);
 	
-    printf("Введите почтовый индекс > ");
+    printf("Р’РІРµРґРёС‚Рµ РїРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ > ");
     readStringFromConsole(POSTCODE);
 
-    printf("Введите тип здания > ");
+    printf("Р’РІРµРґРёС‚Рµ С‚РёРї Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(BUILDING_TYPE);
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_3);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_3);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_3);
 
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "insert into BUILDING ( NUM , POSTCODE , BUILDING_TYPE , CITY_NAME_3 , DISTRICT_NAME_3 , STREET_NAME_3 ) values ( $1  , $2  , $3  , $4  , $5  , $6  )", 
@@ -322,20 +322,20 @@ int DeleteBuildingTable() {
 #line 133 "D:\\RGR2_DB\\RGR2_DB\\BuildingActions.txt"
 
 
-    printf("Введите данные о здании, которое вы хотите удалить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ Рѕ Р·РґР°РЅРёРё, РєРѕС‚РѕСЂРѕРµ РІС‹ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_3);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_3);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_3);
 
-    printf("Введите номер здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(NUM_key_3);
 
-    printf("Введите почтовый индекс здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РїРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(POSTCODE_key_3);
 
 	{ ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "delete from BUILDING where NUM = $1  and POSTCODE = $2  and CITY_NAME_3 = $3  and DISTRICT_NAME_3 = $4  and STREET_NAME_3 = $5 ", 
@@ -397,14 +397,14 @@ int SelectBuildingTable() {
 #line 165 "D:\\RGR2_DB\\RGR2_DB\\BuildingActions.txt"
 
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_3);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_3);
 
-    printf("Таблица зданий \n");
-	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "Номер", "Почтовый индекс", "Тип здания", "Название города", "Название района", "Название улицы");
+    printf("РўР°Р±Р»РёС†Р° Р·РґР°РЅРёР№ \n");
+	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "РќРѕРјРµСЂ", "РџРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ", "РўРёРї Р·РґР°РЅРёСЏ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°", "РќР°Р·РІР°РЅРёРµ СѓР»РёС†С‹");
 	printf("______________________________________________________________________________________________________________\n");
 
     ECPGset_var( 0, ( STREET_NAME_key_3 ), __LINE__);\
