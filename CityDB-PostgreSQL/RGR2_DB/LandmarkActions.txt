@@ -21,8 +21,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadLandmarkTable() {
-    printf("Таблица достопримечательностей \n");
-	printf("%s \t %s \t %s \t %s \t %s \n", "Название", "Год создания", "Тип", "Архитектор", "Название города");
+    printf("РўР°Р±Р»РёС†Р° РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚РµР№ \n");
+	printf("%s \t %s \t %s \t %s \t %s \n", "РќР°Р·РІР°РЅРёРµ", "Р“РѕРґ СЃРѕР·РґР°РЅРёСЏ", "РўРёРї", "РђСЂС…РёС‚РµРєС‚РѕСЂ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°");
 	printf("______________________________________________________________________________________________________________\n");
     EXEC SQL DECLARE MyCursor CURSOR FOR
         SELECT COALESCE(LANDMARK_NAME, ''), COALESCE(CREATION_YEAR,''), COALESCE(LANDMARK_TYPE, ''), COALESCE(ARCHITECT, ''), COALESCE(CITY_NAME_4, '') FROM LANDMARK ORDER BY CITY_NAME_4;
@@ -47,22 +47,22 @@ int UpdateLandmarkTable() {
         char LANDMARK_NAME_key[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите название достопримечательности, информацию о которой вы хотите изменить: > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚Рё, РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РєРѕС‚РѕСЂРѕР№ РІС‹ С…РѕС‚РёС‚Рµ РёР·РјРµРЅРёС‚СЊ: > ");
     readStringFromConsole(LANDMARK_NAME_key);
     
-    printf("Введите новое название достопримечательности > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚Рё > ");
     readStringFromConsole(LANDMARK_NAME);
 	
-    printf("Введите новый год создания (при необходимости) > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РіРѕРґ СЃРѕР·РґР°РЅРёСЏ (РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё) > ");
     readStringFromConsole(CREATION_YEAR);
 
-    printf("Введите новый тип достопримечательности > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ С‚РёРї РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚Рё > ");
     readStringFromConsole(LANDMARK_TYPE);
 
-    printf("Введите нового архитектора > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРіРѕ Р°СЂС…РёС‚РµРєС‚РѕСЂР° > ");
     readStringFromConsole(ARCHITECT);
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_4);
 
     if(CREATION_YEAR[0] == '\0') {
@@ -79,19 +79,19 @@ int UpdateLandmarkTable() {
 }
 
 int InsertLandmarkTable() {
-    printf("Введите название достопримечательности > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚Рё > ");
     readStringFromConsole(LANDMARK_NAME);
 	
-    printf("Введите год создания > ");
+    printf("Р’РІРµРґРёС‚Рµ РіРѕРґ СЃРѕР·РґР°РЅРёСЏ > ");
     readStringFromConsole(CREATION_YEAR);
 
-    printf("Введите тип достопримечательности > ");
+    printf("Р’РІРµРґРёС‚Рµ С‚РёРї РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚Рё > ");
     readStringFromConsole(LANDMARK_TYPE);
 
-    printf("Введите архитектора > ");
+    printf("Р’РІРµРґРёС‚Рµ Р°СЂС…РёС‚РµРєС‚РѕСЂР° > ");
     readStringFromConsole(ARCHITECT);
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_4);
 
         EXEC SQL INSERT INTO LANDMARK(LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4)  VALUES(:LANDMARK_NAME, :CREATION_YEAR, :LANDMARK_TYPE, :ARCHITECT, :CITY_NAME_4);
@@ -108,7 +108,7 @@ int DeleteLandmarkTable() {
         char LANDMARK_NAME_key[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите название достопримечательности, которую вы хотите удалить: > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚Рё, РєРѕС‚РѕСЂСѓСЋ РІС‹ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ: > ");
     readStringFromConsole(LANDMARK_NAME_key);
 
 	EXEC SQL DELETE FROM LANDMARK WHERE LANDMARK_NAME = :LANDMARK_NAME_key;
@@ -126,11 +126,11 @@ int SelectLandmarkTable() {
         char LANDMARK_NAME_key[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите название достопримечательности > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚Рё > ");
     readStringFromConsole(LANDMARK_NAME_key);
 
     EXEC SQL SELECT LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4 INTO :LANDMARK_NAME, :CREATION_YEAR, :LANDMARK_TYPE, :ARCHITECT, :CITY_NAME_4 FROM LANDMARK WHERE LANDMARK_NAME = :LANDMARK_NAME_key;
-    printf(" Название достопримечательности: %s\n Год создания: %s\n Тип: %s\n Архитектор: %s\n Название города: %s\n", LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4);
+    printf(" РќР°Р·РІР°РЅРёРµ РґРѕСЃС‚РѕРїСЂРёРјРµС‡Р°С‚РµР»СЊРЅРѕСЃС‚Рё: %s\n Р“РѕРґ СЃРѕР·РґР°РЅРёСЏ: %s\n РўРёРї: %s\n РђСЂС…РёС‚РµРєС‚РѕСЂ: %s\n РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°: %s\n", LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4);
 	
     	EXEC SQL WHENEVER SQLERROR CALL error1 ();
     	EXEC SQL WHENEVER SQLWARNING CALL error2 ();
