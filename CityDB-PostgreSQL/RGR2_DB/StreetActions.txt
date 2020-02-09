@@ -20,8 +20,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadStreetTable() {
-    printf("Таблица улиц \n");
-	printf("%s \t %s \t %s \t %s \n", "Название улицы", "Движение", "Название города", "Название района");
+    printf("РўР°Р±Р»РёС†Р° СѓР»РёС† \n");
+	printf("%s \t %s \t %s \t %s \n", "РќР°Р·РІР°РЅРёРµ СѓР»РёС†С‹", "Р”РІРёР¶РµРЅРёРµ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°");
 	printf("______________________________________________________________________________________________________________\n");
     EXEC SQL DECLARE MyCursor CURSOR FOR
         SELECT COALESCE(STREET_NAME, ''), COALESCE(TRAFFIC,''), COALESCE(CITY_NAME_2, ''), COALESCE(DISTRICT_NAME_2, '') FROM STREET ORDER BY STREET_NAME;
@@ -48,26 +48,26 @@ int UpdateStreetTable() {
         char STREET_NAME_key_2[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите названия города, района и улицы, данные о которой вы хотите изменить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёСЏ РіРѕСЂРѕРґР°, СЂР°Р№РѕРЅР° Рё СѓР»РёС†С‹, РґР°РЅРЅС‹Рµ Рѕ РєРѕС‚РѕСЂРѕР№ РІС‹ С…РѕС‚РёС‚Рµ РёР·РјРµРЅРёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_2);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_2);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_2);
     
-    printf("Введите новое название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME);
 	
-    printf("Введите новый тип движения > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ С‚РёРї РґРІРёР¶РµРЅРёСЏ > ");
     readStringFromConsole(TRAFFIC);
 
-    printf("Введите новое название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_2);
 
-    printf("Введите новое название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_2);
 
         EXEC SQL UPDATE STREET SET STREET_NAME = :STREET_NAME, TRAFFIC = :TRAFFIC, CITY_NAME_2 = :CITY_NAME_2, DISTRICT_NAME_2 = :DISTRICT_NAME_2 WHERE STREET_NAME = :STREET_NAME_key_2 AND CITY_NAME_2 = :CITY_NAME_key_2 AND DISTRICT_NAME_2 = :DISTRICT_NAME_key_2;
@@ -80,16 +80,16 @@ int UpdateStreetTable() {
 }
 
 int InsertStreetTable() {
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME);
 	
-    printf("Введите тип движения > ");
+    printf("Р’РІРµРґРёС‚Рµ С‚РёРї РґРІРёР¶РµРЅРёСЏ > ");
     readStringFromConsole(TRAFFIC);
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_2);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_2);
 
         EXEC SQL INSERT INTO STREET(STREET_NAME, TRAFFIC, CITY_NAME_2, DISTRICT_NAME_2)  VALUES(:STREET_NAME, :TRAFFIC, :CITY_NAME_2, :DISTRICT_NAME_2);
@@ -108,14 +108,14 @@ int DeleteStreetTable() {
         char STREET_NAME_key_2[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите названия города, района и улицы, которую вы хотите удалить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёСЏ РіРѕСЂРѕРґР°, СЂР°Р№РѕРЅР° Рё СѓР»РёС†С‹, РєРѕС‚РѕСЂСѓСЋ РІС‹ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_2);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_2);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_2);
 
 	EXEC SQL DELETE FROM STREET WHERE STREET_NAME = :STREET_NAME_key_2 AND CITY_NAME_2 = :CITY_NAME_key_2 AND DISTRICT_NAME_2 = :DISTRICT_NAME_key_2;
@@ -133,11 +133,11 @@ int SelectStreetTable() {
         char CITY_NAME_key_2[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_2);
 
-    printf("Таблица улиц \n");
-	printf("%s \t %s \t %s \t %s \n", "Название улицы", "Движение", "Название города", "Название района");
+    printf("РўР°Р±Р»РёС†Р° СѓР»РёС† \n");
+	printf("%s \t %s \t %s \t %s \n", "РќР°Р·РІР°РЅРёРµ СѓР»РёС†С‹", "Р”РІРёР¶РµРЅРёРµ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°");
 	printf("______________________________________________________________________________________________________________\n");
 
     EXEC SQL DECLARE MyCursor2 CURSOR FOR
