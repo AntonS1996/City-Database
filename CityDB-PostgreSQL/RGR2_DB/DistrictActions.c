@@ -60,8 +60,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadDistrictTable() {
-    printf("Таблица районов \n");
-	printf("%s \t %s \t %s \t %s \t %s \n", "Название района", "Округ", "Площадь", "Население", "Название города");
+    printf("РўР°Р±Р»РёС†Р° СЂР°Р№РѕРЅРѕРІ \n");
+	printf("%s \t %s \t %s \t %s \t %s \n", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°", "РћРєСЂСѓРі", "РџР»РѕС‰Р°РґСЊ", "РќР°СЃРµР»РµРЅРёРµ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°");
 	printf("______________________________________________________________________________________________________________\n");
     /* declare MyCursor cursor for select coalesce ( DISTRICT_NAME , '' ) , coalesce ( OKRUG , '' ) , coalesce ( AREA , '' ) , coalesce ( DISTRICT_POPULATION , '' ) , coalesce ( CITY_NAME_1 , '' ) from DISTRICT order by DISTRICT_NAME */
 #line 31 "D:\\RGR2_DB\\RGR2_DB\\DistrictActions.txt"
@@ -122,26 +122,26 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int UpdateDistrictTable() {
-    printf("Введите названия города и района, данные о котором вы хотите изменить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёСЏ РіРѕСЂРѕРґР° Рё СЂР°Р№РѕРЅР°, РґР°РЅРЅС‹Рµ Рѕ РєРѕС‚РѕСЂРѕРј РІС‹ С…РѕС‚РёС‚Рµ РёР·РјРµРЅРёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_1);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_1);
     
-    printf("Введите новое название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME);
 	
-    printf("Введите новое название округа (если он есть) > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РѕРєСЂСѓРіР° (РµСЃР»Рё РѕРЅ РµСЃС‚СЊ) > ");
     readStringFromConsole(OKRUG);
 
-    printf("Введите новое значение площади > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РїР»РѕС‰Р°РґРё > ");
     readStringFromConsole(AREA);
 
-    printf("Введите новую численность населения > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ С‡РёСЃР»РµРЅРЅРѕСЃС‚СЊ РЅР°СЃРµР»РµРЅРёСЏ > ");
     readStringFromConsole(DISTRICT_POPULATION);
     
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_1);
 
     if(OKRUG[0] == '\0') {
@@ -220,19 +220,19 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int InsertDistrictTable() {
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME);
 	
-    printf("Введите название округа > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РѕРєСЂСѓРіР° > ");
     readStringFromConsole(OKRUG);
 
-    printf("Введите значение площади > ");
+    printf("Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РїР»РѕС‰Р°РґРё > ");
     readStringFromConsole(AREA);
 
-    printf("Введите численность населения > ");
+    printf("Р’РІРµРґРёС‚Рµ С‡РёСЃР»РµРЅРЅРѕСЃС‚СЊ РЅР°СЃРµР»РµРЅРёСЏ > ");
     readStringFromConsole(DISTRICT_POPULATION);
     
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_1);
 
     if(OKRUG[0] == '\0') {
@@ -303,11 +303,11 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int DeleteDistrictTable() {
-    printf("Введите названия города и района, который вы хотите удалить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёСЏ РіРѕСЂРѕРґР° Рё СЂР°Р№РѕРЅР°, РєРѕС‚РѕСЂС‹Р№ РІС‹ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_1);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_1);
 
 	{ ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "delete from DISTRICT where DISTRICT_NAME = $1  and CITY_NAME_1 = $2 ", 
@@ -350,11 +350,11 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int SelectDistrictTable() {
-    printf("Введите название округа, в котором хотите найти районы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РѕРєСЂСѓРіР°, РІ РєРѕС‚РѕСЂРѕРј С…РѕС‚РёС‚Рµ РЅР°Р№С‚Рё СЂР°Р№РѕРЅС‹ > ");
     readStringFromConsole(OKRUG_key_1);
 
-    printf("Таблица районов \n");
-	printf("%s \t %s \t %s \t %s \t %s \n", "Название района", "Округ", "Площадь", "Население", "Название города");
+    printf("РўР°Р±Р»РёС†Р° СЂР°Р№РѕРЅРѕРІ \n");
+	printf("%s \t %s \t %s \t %s \t %s \n", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°", "РћРєСЂСѓРі", "РџР»РѕС‰Р°РґСЊ", "РќР°СЃРµР»РµРЅРёРµ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°");
 	printf("______________________________________________________________________________________________________________\n");
 
     /* declare MyCursor2 cursor for select coalesce ( DISTRICT_NAME , '' ) , coalesce ( OKRUG , '' ) , coalesce ( AREA , '' ) , coalesce ( DISTRICT_POPULATION , '' ) , coalesce ( CITY_NAME_1 , '' ) from DISTRICT where OKRUG = $1  order by DISTRICT_NAME */
