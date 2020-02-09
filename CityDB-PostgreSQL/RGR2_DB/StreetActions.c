@@ -44,8 +44,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadStreetTable() {
-    printf("Таблица улиц \n");
-	printf("%s \t %s \t %s \t %s \n", "Название улицы", "Движение", "Название города", "Название района");
+    printf("РўР°Р±Р»РёС†Р° СѓР»РёС† \n");
+	printf("%s \t %s \t %s \t %s \n", "РќР°Р·РІР°РЅРёРµ СѓР»РёС†С‹", "Р”РІРёР¶РµРЅРёРµ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°");
 	printf("______________________________________________________________________________________________________________\n");
     /* declare MyCursor cursor for select coalesce ( STREET_NAME , '' ) , coalesce ( TRAFFIC , '' ) , coalesce ( CITY_NAME_2 , '' ) , coalesce ( DISTRICT_NAME_2 , '' ) from STREET order by STREET_NAME */
 #line 27 "D:\\RGR2_DB\\RGR2_DB\\StreetActions.txt"
@@ -121,26 +121,26 @@ int UpdateStreetTable() {
 #line 49 "D:\\RGR2_DB\\RGR2_DB\\StreetActions.txt"
 
 
-    printf("Введите названия города, района и улицы, данные о которой вы хотите изменить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёСЏ РіРѕСЂРѕРґР°, СЂР°Р№РѕРЅР° Рё СѓР»РёС†С‹, РґР°РЅРЅС‹Рµ Рѕ РєРѕС‚РѕСЂРѕР№ РІС‹ С…РѕС‚РёС‚Рµ РёР·РјРµРЅРёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_2);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_2);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_2);
     
-    printf("Введите новое название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME);
 	
-    printf("Введите новый тип движения > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ С‚РёРї РґРІРёР¶РµРЅРёСЏ > ");
     readStringFromConsole(TRAFFIC);
 
-    printf("Введите новое название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_2);
 
-    printf("Введите новое название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_2);
 
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "update STREET set STREET_NAME = $1  , TRAFFIC = $2  , CITY_NAME_2 = $3  , DISTRICT_NAME_2 = $4  where STREET_NAME = $5  and CITY_NAME_2 = $6  and DISTRICT_NAME_2 = $7 ", 
@@ -192,16 +192,16 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int InsertStreetTable() {
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME);
 	
-    printf("Введите тип движения > ");
+    printf("Р’РІРµРґРёС‚Рµ С‚РёРї РґРІРёР¶РµРЅРёСЏ > ");
     readStringFromConsole(TRAFFIC);
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_2);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_2);
 
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "insert into STREET ( STREET_NAME , TRAFFIC , CITY_NAME_2 , DISTRICT_NAME_2 ) values ( $1  , $2  , $3  , $4  )", 
@@ -264,14 +264,14 @@ int DeleteStreetTable() {
 #line 109 "D:\\RGR2_DB\\RGR2_DB\\StreetActions.txt"
 
 
-    printf("Введите названия города, района и улицы, которую вы хотите удалить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёСЏ РіРѕСЂРѕРґР°, СЂР°Р№РѕРЅР° Рё СѓР»РёС†С‹, РєРѕС‚РѕСЂСѓСЋ РІС‹ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_2);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_2);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_2);
 
 	{ ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "delete from STREET where STREET_NAME = $1  and CITY_NAME_2 = $2  and DISTRICT_NAME_2 = $3 ", 
@@ -325,11 +325,11 @@ int SelectStreetTable() {
 #line 134 "D:\\RGR2_DB\\RGR2_DB\\StreetActions.txt"
 
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_2);
 
-    printf("Таблица улиц \n");
-	printf("%s \t %s \t %s \t %s \n", "Название улицы", "Движение", "Название города", "Название района");
+    printf("РўР°Р±Р»РёС†Р° СѓР»РёС† \n");
+	printf("%s \t %s \t %s \t %s \n", "РќР°Р·РІР°РЅРёРµ СѓР»РёС†С‹", "Р”РІРёР¶РµРЅРёРµ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°");
 	printf("______________________________________________________________________________________________________________\n");
 
     ECPGset_var( 0, ( CITY_NAME_key_2 ), __LINE__);\
