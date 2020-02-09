@@ -22,8 +22,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadBuildingTable() {
-    printf("Таблица зданий \n");
-	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "Номер", "Почтовый индекс", "Тип здания", "Название города", "Название района", "Название улицы");
+    printf("РўР°Р±Р»РёС†Р° Р·РґР°РЅРёР№ \n");
+	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "РќРѕРјРµСЂ", "РџРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ", "РўРёРї Р·РґР°РЅРёСЏ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°", "РќР°Р·РІР°РЅРёРµ СѓР»РёС†С‹");
 	printf("______________________________________________________________________________________________________________\n");
     EXEC SQL DECLARE MyCursor CURSOR FOR
         SELECT COALESCE(NUM, ''), COALESCE(POSTCODE,''), COALESCE(BUILDING_TYPE, ''), COALESCE(CITY_NAME_3, ''), COALESCE(DISTRICT_NAME_3, ''), COALESCE(STREET_NAME_3, '') FROM BUILDING ORDER BY STREET_NAME_3;
@@ -52,38 +52,38 @@ int UpdateBuildingTable() {
         char POSTCODE_key_3[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите данные о здании, информацию о котором вы хотите изменить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ Рѕ Р·РґР°РЅРёРё, РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РєРѕС‚РѕСЂРѕРј РІС‹ С…РѕС‚РёС‚Рµ РёР·РјРµРЅРёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_3);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_3);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_3);
 
-    printf("Введите номер здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(NUM_key_3);
 
-    printf("Введите почтовый индекс здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РїРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(POSTCODE_key_3);
     
-    printf("Введите новый номер здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РЅРѕРјРµСЂ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(NUM);
 	
-    printf("Введите новый почтовый индекс > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РїРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ > ");
     readStringFromConsole(POSTCODE);
 
-    printf("Введите новый тип здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ С‚РёРї Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(BUILDING_TYPE);
 
-    printf("Введите новое название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_3);
 
-    printf("Введите новое название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_3);
 
-    printf("Введите новое название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_3);
 
         EXEC SQL UPDATE BUILDING SET NUM = :NUM, POSTCODE = :POSTCODE, BUILDING_TYPE = :BUILDING_TYPE, CITY_NAME_3 = :CITY_NAME_3, DISTRICT_NAME_3 = :DISTRICT_NAME_3, STREET_NAME_3 = :STREET_NAME_3 WHERE NUM = :NUM_key_3 AND POSTCODE = :POSTCODE_key_3 AND CITY_NAME_3 = :CITY_NAME_key_3 AND DISTRICT_NAME_3 = :DISTRICT_NAME_key_3 AND STREET_NAME_3 = :STREET_NAME_key_3;
@@ -96,22 +96,22 @@ int UpdateBuildingTable() {
 }
 
 int InsertBuildingTable() {
-    printf("Введите номер здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(NUM);
 	
-    printf("Введите почтовый индекс > ");
+    printf("Р’РІРµРґРёС‚Рµ РїРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ > ");
     readStringFromConsole(POSTCODE);
 
-    printf("Введите тип здания > ");
+    printf("Р’РІРµРґРёС‚Рµ С‚РёРї Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(BUILDING_TYPE);
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_3);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_3);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_3);
 
         EXEC SQL INSERT INTO BUILDING(NUM, POSTCODE, BUILDING_TYPE, CITY_NAME_3, DISTRICT_NAME_3, STREET_NAME_3)  VALUES(:NUM, :POSTCODE, :BUILDING_TYPE, :CITY_NAME_3, :DISTRICT_NAME_3, :STREET_NAME_3);
@@ -132,20 +132,20 @@ int DeleteBuildingTable() {
         char POSTCODE_key_3[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите данные о здании, которое вы хотите удалить: \n ");
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ Рѕ Р·РґР°РЅРёРё, РєРѕС‚РѕСЂРѕРµ РІС‹ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ: \n ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_3);
 
-    printf("Введите название района > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР° > ");
     readStringFromConsole(DISTRICT_NAME_key_3);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_3);
 
-    printf("Введите номер здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(NUM_key_3);
 
-    printf("Введите почтовый индекс здания > ");
+    printf("Р’РІРµРґРёС‚Рµ РїРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ Р·РґР°РЅРёСЏ > ");
     readStringFromConsole(POSTCODE_key_3);
 
 	EXEC SQL DELETE FROM BUILDING WHERE NUM = :NUM_key_3 AND POSTCODE = :POSTCODE_key_3 AND CITY_NAME_3 = :CITY_NAME_key_3 AND DISTRICT_NAME_3 = :DISTRICT_NAME_key_3 AND STREET_NAME_3 = :STREET_NAME_key_3;
@@ -164,14 +164,14 @@ int SelectBuildingTable() {
         char STREET_NAME_key_3[256];
     EXEC SQL END DECLARE SECTION;
 
-    printf("Введите название города > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° > ");
     readStringFromConsole(CITY_NAME_key_3);
 
-    printf("Введите название улицы > ");
+    printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СѓР»РёС†С‹ > ");
     readStringFromConsole(STREET_NAME_key_3);
 
-    printf("Таблица зданий \n");
-	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "Номер", "Почтовый индекс", "Тип здания", "Название города", "Название района", "Название улицы");
+    printf("РўР°Р±Р»РёС†Р° Р·РґР°РЅРёР№ \n");
+	printf("%s \t %s \t %s \t %s \t %s \t %s \n", "РќРѕРјРµСЂ", "РџРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ", "РўРёРї Р·РґР°РЅРёСЏ", "РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°", "РќР°Р·РІР°РЅРёРµ СЂР°Р№РѕРЅР°", "РќР°Р·РІР°РЅРёРµ СѓР»РёС†С‹");
 	printf("______________________________________________________________________________________________________________\n");
 
     EXEC SQL DECLARE MyCursor2 CURSOR FOR
