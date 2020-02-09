@@ -48,8 +48,8 @@ void error3();
 void readStringFromConsole(char str[256]);
 
 int ReadLandmarkTable() {
-    printf("Òàáëèöà äîñòîïðèìå÷àòåëüíîñòåé \n");
-	printf("%s \t %s \t %s \t %s \t %s \n", "Íàçâàíèå", "Ãîä ñîçäàíèÿ", "Òèï", "Àðõèòåêòîð", "Íàçâàíèå ãîðîäà");
+    printf("Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð° Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÐµÐ¹ \n");
+	printf("%s \t %s \t %s \t %s \t %s \n", "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ", "Ð“Ð¾Ð´ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ", "Ð¢Ð¸Ð¿", "ÐÑ€Ñ…Ð¸Ñ‚ÐµÐºÑ‚Ð¾Ñ€", "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð°");
 	printf("______________________________________________________________________________________________________________\n");
     /* declare MyCursor cursor for select coalesce ( LANDMARK_NAME , '' ) , coalesce ( CREATION_YEAR , '' ) , coalesce ( LANDMARK_TYPE , '' ) , coalesce ( ARCHITECT , '' ) , coalesce ( CITY_NAME_4 , '' ) from LANDMARK order by CITY_NAME_4 */
 #line 28 "D:\\RGR2_DB\\RGR2_DB\\LandmarkActions.txt"
@@ -119,22 +119,22 @@ int UpdateLandmarkTable() {
 #line 48 "D:\\RGR2_DB\\RGR2_DB\\LandmarkActions.txt"
 
 
-    printf("Ââåäèòå íàçâàíèå äîñòîïðèìå÷àòåëüíîñòè, èíôîðìàöèþ î êîòîðîé âû õîòèòå èçìåíèòü: > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸, Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð¾ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ: > ");
     readStringFromConsole(LANDMARK_NAME_key);
     
-    printf("Ââåäèòå íîâîå íàçâàíèå äîñòîïðèìå÷àòåëüíîñòè > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ð¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ > ");
     readStringFromConsole(LANDMARK_NAME);
 	
-    printf("Ââåäèòå íîâûé ãîä ñîçäàíèÿ (ïðè íåîáõîäèìîñòè) > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ð¹ Ð³Ð¾Ð´ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ (Ð¿Ñ€Ð¸ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ÑÑ‚Ð¸) > ");
     readStringFromConsole(CREATION_YEAR);
 
-    printf("Ââåäèòå íîâûé òèï äîñòîïðèìå÷àòåëüíîñòè > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚Ð¸Ð¿ Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ > ");
     readStringFromConsole(LANDMARK_TYPE);
 
-    printf("Ââåäèòå íîâîãî àðõèòåêòîðà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð°Ñ€Ñ…Ð¸Ñ‚ÐµÐºÑ‚Ð¾Ñ€Ð° > ");
     readStringFromConsole(ARCHITECT);
 
-    printf("Ââåäèòå íàçâàíèå ãîðîäà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð° > ");
     readStringFromConsole(CITY_NAME_4);
 
     if(CREATION_YEAR[0] == '\0') {
@@ -209,19 +209,19 @@ if (sqlca.sqlcode < 0) error1 ( );}
 }
 
 int InsertLandmarkTable() {
-    printf("Ââåäèòå íàçâàíèå äîñòîïðèìå÷àòåëüíîñòè > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ > ");
     readStringFromConsole(LANDMARK_NAME);
 	
-    printf("Ââåäèòå ãîä ñîçäàíèÿ > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ð¾Ð´ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ > ");
     readStringFromConsole(CREATION_YEAR);
 
-    printf("Ââåäèòå òèï äîñòîïðèìå÷àòåëüíîñòè > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ > ");
     readStringFromConsole(LANDMARK_TYPE);
 
-    printf("Ââåäèòå àðõèòåêòîðà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð°Ñ€Ñ…Ð¸Ñ‚ÐµÐºÑ‚Ð¾Ñ€Ð° > ");
     readStringFromConsole(ARCHITECT);
 
-    printf("Ââåäèòå íàçâàíèå ãîðîäà > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð° > ");
     readStringFromConsole(CITY_NAME_4);
 
         { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "insert into LANDMARK ( LANDMARK_NAME , CREATION_YEAR , LANDMARK_TYPE , ARCHITECT , CITY_NAME_4 ) values ( $1  , $2  , $3  , $4  , $5  )", 
@@ -278,7 +278,7 @@ int DeleteLandmarkTable() {
 #line 109 "D:\\RGR2_DB\\RGR2_DB\\LandmarkActions.txt"
 
 
-    printf("Ââåäèòå íàçâàíèå äîñòîïðèìå÷àòåëüíîñòè, êîòîðóþ âû õîòèòå óäàëèòü: > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸, ÐºÐ¾Ñ‚Ð¾Ñ€ÑƒÑŽ Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ: > ");
     readStringFromConsole(LANDMARK_NAME_key);
 
 	{ ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "delete from LANDMARK where LANDMARK_NAME = $1 ", 
@@ -328,7 +328,7 @@ int SelectLandmarkTable() {
 #line 127 "D:\\RGR2_DB\\RGR2_DB\\LandmarkActions.txt"
 
 
-    printf("Ââåäèòå íàçâàíèå äîñòîïðèìå÷àòåëüíîñòè > ");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ > ");
     readStringFromConsole(LANDMARK_NAME_key);
 
     { ECPGdo(__LINE__, 0, 1, NULL, 0, ECPGst_normal, "select LANDMARK_NAME , CREATION_YEAR , LANDMARK_TYPE , ARCHITECT , CITY_NAME_4 from LANDMARK where LANDMARK_NAME = $1 ", 
@@ -355,7 +355,7 @@ if (sqlca.sqlwarn[0] == 'W') error2 ( );
 if (sqlca.sqlcode < 0) error1 ( );}
 #line 132 "D:\\RGR2_DB\\RGR2_DB\\LandmarkActions.txt"
 
-    printf(" Íàçâàíèå äîñòîïðèìå÷àòåëüíîñòè: %s\n Ãîä ñîçäàíèÿ: %s\n Òèï: %s\n Àðõèòåêòîð: %s\n Íàçâàíèå ãîðîäà: %s\n", LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4);
+    printf(" ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾ÑÑ‚Ð¾Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸: %s\n Ð“Ð¾Ð´ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ: %s\n Ð¢Ð¸Ð¿: %s\n ÐÑ€Ñ…Ð¸Ñ‚ÐµÐºÑ‚Ð¾Ñ€: %s\n ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð°: %s\n", LANDMARK_NAME, CREATION_YEAR, LANDMARK_TYPE, ARCHITECT, CITY_NAME_4);
 	
     	/* exec sql whenever sqlerror  call error1 ( ) ; */
 #line 135 "D:\\RGR2_DB\\RGR2_DB\\LandmarkActions.txt"
